@@ -2,7 +2,7 @@ package farshidroohi.github.io.onlinealbums.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import farshidroohi.github.io.onlinealbums.model.Photo
+import farshidroohi.github.io.onlinealbums.data.model.Photo
 
 /**
  * Created by Farshid Roohi.

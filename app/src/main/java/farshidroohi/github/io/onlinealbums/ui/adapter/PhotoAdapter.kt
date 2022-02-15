@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ItemImageBinding
-import farshidroohi.github.io.onlinealbums.model.Photo
+import farshidroohi.github.io.onlinealbums.data.model.Photo
 
 /**
  * Created by Farshid Roohi.

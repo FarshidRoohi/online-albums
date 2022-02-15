@@ -1,18 +1,21 @@
-package farshidroohi.github.io.onlinealbums.model
+package farshidroohi.github.io.onlinealbums.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * Created by Farshid Roohi.
  * OnlineAlbums | Copyrights 2/15/22.
  */
 @Entity(tableName = "photos")
+@JsonClass(generateAdapter = true)
 data class Photo constructor(
     @PrimaryKey
-    @ColumnInfo(name = "id")
+
+    @field:Json(name = "id")
     var id: String,
     @Json(name = "media_type")
     @ColumnInfo(name = "media_type")

@@ -1,7 +1,7 @@
 package farshidroohi.github.io.onlinealbums.data
 
 import androidx.lifecycle.LiveData
-import farshidroohi.github.io.onlinealbums.model.Photo
+import farshidroohi.github.io.onlinealbums.data.model.Photo
 
 /**
  * Created by Farshid Roohi.
