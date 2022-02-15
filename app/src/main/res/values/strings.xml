@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">OnlineAlbums</string>
+
+    <string name="photo_item">Photo item</string>
+    <string name="error_network">Error, Please check your network!</string>
+    <string name="try_again">try again</string>
+    <string name="refresh">Refresh</string>
 </resources>
