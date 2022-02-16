@@ -2,7 +2,11 @@
     <string name="app_name">OnlineAlbums</string>
 
     <string name="photo_item">Photo item</string>
-    <string name="error_network">Error, Please check your network!</string>
+    <string name="error_network">Please check your network!</string>
+    <string name="error_access_denied">Access Denied!</string>
     <string name="try_again">try again</string>
     <string name="refresh">Refresh</string>
+    <string name="error_not_found">We not found any photos :(</string>
+    <string name="error_service_unavailable">Ooops !!! 500</string>
+    <string name="error_unknown">Ooops !!!</string>
 </resources>

@@ -1,27 +1,27 @@
 package farshidroohi.github.io.onlinealbums.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ActivityMainBinding
 import farshidroohi.github.io.onlinealbums.ui.adapter.PhotoAdapter
 import farshidroohi.github.io.onlinealbums.ui.viewmodel.PhotoViewModel
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var photoViewModel: PhotoViewModel
+    private val photoViewModel: PhotoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        photoViewModel = ViewModelProvider(this)[PhotoViewModel::class.java]
-        photoViewModel.fetch()
 
         val adapter = PhotoAdapter()
         binding.layoutContent.recyclerviewImages.adapter = adapter
@@ -35,12 +35,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         photoViewModel.dataError.observe(this) { isVisible ->
+            binding.layoutContent.root.isVisible = !isVisible
             binding.layoutError.root.isVisible = isVisible
+        }
+        photoViewModel.dataErrorMessage.observe(this) { stringRes ->
+            binding.layoutError.txtError.text = getString(stringRes)
         }
 
         binding.layoutError.btnTryAgain.setOnClickListener {
             photoViewModel.refresh()
         }
+
+        photoViewModel.fetch()
 
     }
 

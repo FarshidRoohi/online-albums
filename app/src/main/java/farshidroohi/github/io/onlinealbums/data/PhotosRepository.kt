@@ -1,6 +1,6 @@
-package farshidroohi.github.io.onlinealbums.data.repositories
+package farshidroohi.github.io.onlinealbums.data
 
-import farshidroohi.github.io.onlinealbums.model.Photo
+import farshidroohi.github.io.onlinealbums.data.model.Photo
 
 /**
  * Created by Farshid Roohi.
@@ -9,4 +9,5 @@ import farshidroohi.github.io.onlinealbums.model.Photo
 interface PhotosRepository {
     suspend fun getPhotos(isForceUpdate: Boolean): Result<List<Photo>>
     suspend fun deletePhotos()
+    suspend fun savePhotos(photos: List<Photo>)
 }
