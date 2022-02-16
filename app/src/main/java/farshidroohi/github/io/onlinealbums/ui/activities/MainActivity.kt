@@ -6,10 +6,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import dagger.Module
-import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.components.ViewModelComponent
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ActivityMainBinding
 import farshidroohi.github.io.onlinealbums.ui.adapter.PhotoAdapter
@@ -38,7 +35,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         photoViewModel.dataError.observe(this) { isVisible ->
+            binding.layoutContent.root.isVisible = !isVisible
             binding.layoutError.root.isVisible = isVisible
+        }
+        photoViewModel.dataErrorMessage.observe(this) { stringRes ->
+            binding.layoutError.txtError.text = getString(stringRes)
         }
 
         binding.layoutError.btnTryAgain.setOnClickListener {
@@ -61,11 +62,5 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-}
-
-@Module
-@InstallIn(ViewModelComponent::class) // this is new
-object RepositoryModule {
 
 }

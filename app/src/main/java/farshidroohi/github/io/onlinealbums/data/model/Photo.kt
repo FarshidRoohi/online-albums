@@ -14,7 +14,6 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Photo constructor(
     @PrimaryKey
-
     @field:Json(name = "id")
     var id: String,
     @Json(name = "media_type")

@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ItemImageBinding
 import farshidroohi.github.io.onlinealbums.data.model.Photo
@@ -16,8 +19,6 @@ import farshidroohi.github.io.onlinealbums.data.model.Photo
  */
 class PhotoAdapter : ListAdapter<Photo, PhotoAdapter.PhotoViewHolder>(PhotoDiffCallback()) {
 
-    private var photos: ArrayList<Photo> = arrayListOf()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
@@ -26,11 +27,14 @@ class PhotoAdapter : ListAdapter<Photo, PhotoAdapter.PhotoViewHolder>(PhotoDiffC
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val binding = ItemImageBinding.bind(holder.itemView)
+        Glide.with(holder.itemView.context)
+            .load(getItem(position).thumbnail_url)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+            .placeholder(R.drawable.ic_baseline_image_24)
+            .centerCrop()
+            .apply(RequestOptions().override(150, 150))
+            .into(binding.imgPhoto)
 
-    }
-
-    override fun getItemCount(): Int {
-        return photos.size
     }
 
     class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

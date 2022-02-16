@@ -1,12 +1,10 @@
 package farshidroohi.github.io.onlinealbums.data.source.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import farshidroohi.github.io.onlinealbums.data.model.Photo
-import kotlinx.coroutines.Deferred
 
 /**
  * Created by Farshid Roohi.
@@ -16,7 +14,7 @@ import kotlinx.coroutines.Deferred
 interface PhotosDao {
 
     @Query("SELECT * FROM photos")
-    fun getPhotos(): LiveData<List<Photo>>
+    fun getPhotos(): List<Photo>
 
     @Query("DELETE FROM Photos")
     suspend fun deletePhotos()

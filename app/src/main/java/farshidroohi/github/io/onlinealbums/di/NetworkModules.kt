@@ -5,7 +5,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
 import farshidroohi.github.io.onlinealbums.BuildConfig
 import farshidroohi.github.io.onlinealbums.data.source.network.ApiService
@@ -26,15 +25,11 @@ object NetworkModules {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): ApiService {
-
-        val moshi = Moshi.Builder()
-            .addLast(KotlinJsonAdapterFactory())
-            .build()
-
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: MoshiConverterFactory): ApiService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build()))            .client(okHttpClient)
+            .addConverterFactory(moshi)
+            .client(okHttpClient)
             .build()
             .create(ApiService::class.java)
     }
@@ -50,7 +45,25 @@ object NetworkModules {
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+
+        val level = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor.Level.BODY
+        } else {
+            HttpLoggingInterceptor.Level.NONE
+        }
+
         return HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
+            .setLevel(level)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshiConverter(): MoshiConverterFactory {
+        return MoshiConverterFactory
+            .create(
+                Moshi.Builder()
+                    .add(KotlinJsonAdapterFactory())
+                    .build()
+            )
     }
 }

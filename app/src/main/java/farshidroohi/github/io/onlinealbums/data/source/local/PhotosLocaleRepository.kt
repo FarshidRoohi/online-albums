@@ -1,4 +1,4 @@
-package farshidroohi.github.io.onlinealbums.data
+package farshidroohi.github.io.onlinealbums.data.source.local
 
 import farshidroohi.github.io.onlinealbums.data.model.Photo
 
@@ -6,8 +6,8 @@ import farshidroohi.github.io.onlinealbums.data.model.Photo
  * Created by Farshid Roohi.
  * OnlineAlbums | Copyrights 2/15/22.
  */
-interface PhotosRepository {
-    suspend fun getPhotos(isForceUpdate: Boolean): Result<List<Photo>>
+interface PhotosLocaleRepository {
+    suspend fun getPhotos(): List<Photo>
     suspend fun deletePhotos()
     suspend fun savePhotos(photos: List<Photo>)
 }
