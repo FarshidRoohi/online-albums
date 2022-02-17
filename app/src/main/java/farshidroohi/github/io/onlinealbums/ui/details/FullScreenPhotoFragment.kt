@@ -83,7 +83,7 @@ class FullScreenPhotoFragment : Fragment() {
     private fun populateView(photo: Photo) {
 
         Glide.with(requireContext())
-            .load(photo.download_url)
+            .load(photo.thumbnail_url)
             .progressBar(binding.progressBar)
             .into(binding.imgPhoto)
 

@@ -1,5 +1,6 @@
 package farshidroohi.github.io.onlinealbums.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ItemImageBinding
 import farshidroohi.github.io.onlinealbums.data.model.Photo
+import farshidroohi.github.io.onlinealbums.util.toMB
 
 /**
  * Created by Farshid Roohi.
@@ -29,16 +31,19 @@ class PhotoAdapter(private val onClickPhoto: ((Photo) -> Unit)? = null) :
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val binding = ItemImageBinding.bind(holder.itemView)
+        val item = getItem(position)
+
+        binding.txtSize.text = item.size.toMB()
+
         Glide.with(holder.itemView.context)
-            .load(getItem(position).thumbnail_url)
+            .load(item.toThumbnailUrl())
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .placeholder(R.drawable.ic_baseline_image_24)
             .centerCrop()
-            .apply(RequestOptions().override(150, 150))
             .into(binding.imgPhoto)
 
         binding.imgPhoto.setOnClickListener {
-            onClickPhoto?.let { onClick -> onClick(getItem(position)) }
+            onClickPhoto?.let { onClick -> onClick(item) }
         }
 
     }
