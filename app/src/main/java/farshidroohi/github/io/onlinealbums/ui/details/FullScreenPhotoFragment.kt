@@ -1,6 +1,7 @@
 package farshidroohi.github.io.onlinealbums.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,7 +85,9 @@ class FullScreenPhotoFragment : Fragment() {
 
         Glide.with(requireContext())
             .load(photo.thumbnail_url)
-            .progressBar(binding.progressBar)
+            .progressBar(progressBar = binding.progressBar, onLoadFailed = {
+                binding.txtError.visibility = View.VISIBLE
+            })
             .into(binding.imgPhoto)
 
         binding.txtDate.text = photo.createdAt.toDisplayFormat()

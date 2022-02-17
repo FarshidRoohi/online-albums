@@ -13,9 +13,11 @@ import com.bumptech.glide.request.target.Target
  * Created by Farshid Roohi.
  * OnlineAlbums | Copyrights 2/17/22.
  */
-
 @SuppressLint("CheckResult")
-fun <T> RequestBuilder<T>.progressBar(progressBar: ProgressBar): RequestBuilder<T> {
+fun <T> RequestBuilder<T>.progressBar(
+    progressBar: ProgressBar,
+    onLoadFailed: (() -> Unit)? = null
+): RequestBuilder<T> {
     progressBar.isVisible = true
     this.listener(
         object : RequestListener<T> {
@@ -25,6 +27,7 @@ fun <T> RequestBuilder<T>.progressBar(progressBar: ProgressBar): RequestBuilder<
                 target: Target<T>?,
                 isFirstResource: Boolean
             ): Boolean {
+                onLoadFailed?.let { it() }
                 progressBar.isVisible = false
                 return false
             }
