@@ -14,8 +14,3 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-ext{
-    roomVersion = "2.4.1"
-    archLifecycleVersion = "2.4.1"
-}
