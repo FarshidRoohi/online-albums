@@ -16,6 +16,9 @@ interface PhotosDao {
     @Query("SELECT * FROM photos")
     fun getPhotos(): List<Photo>
 
+    @Query("SELECT * FROM photos WHERE id == :photoId")
+    fun getPhotoById(photoId:String): Photo?
+
     @Query("DELETE FROM Photos")
     suspend fun deletePhotos()
 

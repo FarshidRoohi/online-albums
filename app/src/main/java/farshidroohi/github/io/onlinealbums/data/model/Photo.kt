@@ -36,4 +36,8 @@ data class Photo constructor(
     var resx: Int,
     @ColumnInfo(name = "resy")
     var resy: Int,
-)
+) {
+    fun toThumbnailUrl(): String {
+        return "$thumbnail_url?w=300&h=300&m=bb"
+    }
+}

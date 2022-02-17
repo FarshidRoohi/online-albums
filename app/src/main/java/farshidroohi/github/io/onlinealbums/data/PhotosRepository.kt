@@ -8,6 +8,7 @@ import farshidroohi.github.io.onlinealbums.data.model.Photo
  */
 interface PhotosRepository {
     suspend fun getPhotos(isForceUpdate: Boolean): Result<List<Photo>>
+    suspend fun getPhoto(id: String): Result<Photo>
     suspend fun deletePhotos()
     suspend fun savePhotos(photos: List<Photo>)
 }

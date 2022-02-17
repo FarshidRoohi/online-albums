@@ -7,10 +7,10 @@ import farshidroohi.github.io.onlinealbums.data.model.ErrorEntity
 import farshidroohi.github.io.onlinealbums.data.model.Photo
 import farshidroohi.github.io.onlinealbums.data.source.local.PhotosLocalSource
 import farshidroohi.github.io.onlinealbums.data.source.network.PhotoNetworkSource
-import java.io.IOException
-import javax.inject.Inject
 import farshidroohi.github.io.onlinealbums.util.getErrorObject
 import farshidroohi.github.io.onlinealbums.util.isSuccessfully
+import java.io.IOException
+import javax.inject.Inject
 
 
 /**
@@ -55,5 +55,11 @@ class PhotosRepositoryImpl @Inject constructor(
 
     override suspend fun savePhotos(photos: List<Photo>) {
         photosLocalSource.savePhotos(photos)
+    }
+
+    override suspend fun getPhoto(id: String): Result<Photo> {
+        val photo = photosLocalSource.getPhoto(id) ?: return Result.Error(ErrorEntity.NotFound)
+
+        return Result.Success(photo)
     }
 }
