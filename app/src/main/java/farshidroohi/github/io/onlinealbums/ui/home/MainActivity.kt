@@ -1,14 +1,11 @@
 package farshidroohi.github.io.onlinealbums.ui.home
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import farshidroohi.github.io.onlinealbums.R
@@ -70,21 +67,4 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onBackPressed() {
-
-        val fragmentOnMainFrameLayout =
-            supportFragmentManager.findFragmentById(R.id.frame_layout)
-
-        if (fragmentOnMainFrameLayout != null) {
-            supportFragmentManager.commit {
-                remove(fragmentOnMainFrameLayout)
-            }
-            return
-        }
-
-
-        super.onBackPressed()
-    }
-
 }
