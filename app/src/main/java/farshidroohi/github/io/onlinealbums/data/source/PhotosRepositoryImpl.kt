@@ -1,7 +1,6 @@
 package farshidroohi.github.io.onlinealbums.data.source
 
 import farshidroohi.github.io.onlinealbums.BuildConfig
-import farshidroohi.github.io.onlinealbums.data.PhotosRepository
 import farshidroohi.github.io.onlinealbums.data.Result
 import farshidroohi.github.io.onlinealbums.data.model.ErrorEntity
 import farshidroohi.github.io.onlinealbums.data.model.Photo

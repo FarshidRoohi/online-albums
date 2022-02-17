@@ -2,14 +2,12 @@ package farshidroohi.github.io.onlinealbums.di
 
 import android.content.Context
 import androidx.room.Room
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import farshidroohi.github.io.onlinealbums.data.PhotosRepository
+import farshidroohi.github.io.onlinealbums.data.source.PhotosRepository
 import farshidroohi.github.io.onlinealbums.data.source.PhotosRepositoryImpl
 import farshidroohi.github.io.onlinealbums.data.source.local.PhotoDatabase
 import farshidroohi.github.io.onlinealbums.data.source.local.PhotosDao

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import farshidroohi.github.io.onlinealbums.data.PhotosRepository
+import farshidroohi.github.io.onlinealbums.data.source.PhotosRepository
 import farshidroohi.github.io.onlinealbums.data.Result
 import farshidroohi.github.io.onlinealbums.data.model.ErrorEntity
 import farshidroohi.github.io.onlinealbums.data.model.Photo

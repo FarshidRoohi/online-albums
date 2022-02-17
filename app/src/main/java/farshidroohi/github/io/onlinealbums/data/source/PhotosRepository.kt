@@ -1,5 +1,6 @@
-package farshidroohi.github.io.onlinealbums.data
+package farshidroohi.github.io.onlinealbums.data.source
 
+import farshidroohi.github.io.onlinealbums.data.Result
 import farshidroohi.github.io.onlinealbums.data.model.Photo
 
 /**
