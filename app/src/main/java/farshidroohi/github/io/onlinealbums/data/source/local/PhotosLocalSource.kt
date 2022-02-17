@@ -28,4 +28,8 @@ class PhotosLocalSource @Inject constructor(
             photosDao.insertPhoto(photo)
         }
     }
+
+    override suspend fun getPhoto(id: String): Photo? {
+        return photosDao.getPhotoById(id)
+    }
 }

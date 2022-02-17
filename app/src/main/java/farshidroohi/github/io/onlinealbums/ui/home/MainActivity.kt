@@ -1,16 +1,19 @@
-package farshidroohi.github.io.onlinealbums.ui.activities
+package farshidroohi.github.io.onlinealbums.ui.home
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import farshidroohi.github.io.onlinealbums.R
 import farshidroohi.github.io.onlinealbums.databinding.ActivityMainBinding
-import farshidroohi.github.io.onlinealbums.ui.adapter.PhotoAdapter
-import farshidroohi.github.io.onlinealbums.ui.viewmodel.PhotoViewModel
+import farshidroohi.github.io.onlinealbums.ui.details.FullScreenPhotoFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -23,7 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val adapter = PhotoAdapter()
+        val adapter = PhotoAdapter { photo ->
+            val fragment = FullScreenPhotoFragment.newInstance(photoId = photo.id)
+            supportFragmentManager.commit {
+                replace(R.id.frame_layout, fragment)
+            }
+        }
         binding.layoutContent.recyclerviewImages.adapter = adapter
 
         photoViewModel.photosLiveData.observe(this) { items ->
@@ -39,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             binding.layoutError.root.isVisible = isVisible
         }
         photoViewModel.dataErrorMessage.observe(this) { stringRes ->
-            binding.layoutError.txtError.text = getString(stringRes)
+            binding.layoutError.txtError.setText(stringRes)
         }
 
         binding.layoutError.btnTryAgain.setOnClickListener {
@@ -61,6 +69,22 @@ class MainActivity : AppCompatActivity() {
             photoViewModel.refresh()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+
+        val fragmentOnMainFrameLayout =
+            supportFragmentManager.findFragmentById(R.id.frame_layout)
+
+        if (fragmentOnMainFrameLayout != null) {
+            supportFragmentManager.commit {
+                remove(fragmentOnMainFrameLayout)
+            }
+            return
+        }
+
+
+        super.onBackPressed()
     }
 
 }

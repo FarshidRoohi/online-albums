@@ -8,6 +8,7 @@ import farshidroohi.github.io.onlinealbums.data.model.Photo
  */
 interface PhotosLocaleRepository {
     suspend fun getPhotos(): List<Photo>
+    suspend fun getPhoto(id:String): Photo?
     suspend fun deletePhotos()
     suspend fun savePhotos(photos: List<Photo>)
 }

@@ -1,4 +1,4 @@
-package farshidroohi.github.io.onlinealbums.ui.adapter
+package farshidroohi.github.io.onlinealbums.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,9 @@ import farshidroohi.github.io.onlinealbums.data.model.Photo
  * Created by Farshid Roohi.
  * OnlineAlbums | Copyrights 2/15/22.
  */
-class PhotoAdapter : ListAdapter<Photo, PhotoAdapter.PhotoViewHolder>(PhotoDiffCallback()) {
+class PhotoAdapter(private val onClickPhoto: ((Photo) -> Unit)? = null) :
+    ListAdapter<Photo, PhotoAdapter.PhotoViewHolder>(PhotoDiffCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val itemView =
@@ -34,6 +36,10 @@ class PhotoAdapter : ListAdapter<Photo, PhotoAdapter.PhotoViewHolder>(PhotoDiffC
             .centerCrop()
             .apply(RequestOptions().override(150, 150))
             .into(binding.imgPhoto)
+
+        binding.imgPhoto.setOnClickListener {
+            onClickPhoto?.let { onClick -> onClick(getItem(position)) }
+        }
 
     }
 
